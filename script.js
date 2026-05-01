@@ -26,7 +26,7 @@ const compitetors = [
 ]
 //console.log(compitetors);
 compitetors.forEach(compititor => {
-    console.log(`Welcome to the Reading Championship!!! ${compititor.name}`)
+    console.log(` ${compititor.name} Welcome to the Reading Championship!!!`)
 });
 
 //functions
@@ -36,17 +36,10 @@ function calculateProgress(pagesRead, totalPages) {
     return (pagesRead / totalPages) * 100
 }
 
-console.log(calculateProgress(compitetors[1].pagesRead[0], compitetors[0].tolalPages[0]))
+console.log(`Percentage of single book: ${calculateProgress(compitetors[1].pagesRead[0], compitetors[1].tolalPages[0])}%`)
 
 // Returns total pages read by a competitor
 
-// function calculateTotalPagesRead(pagesReadArray) {
-//     let totalPagesRead = 0;
-//     for(let i = 0; i < pagesReadArray.length; i++) {
-//         totalPagesRead += pagesReadArray[i];
-//     }
-//     return totalPagesRead;
-// }
 function calculateTotalPagesRead(pagesReadArray) {
     let totalPagesRead = 0
     for(let pages of pagesReadArray) {
@@ -54,7 +47,10 @@ function calculateTotalPagesRead(pagesReadArray) {
     }
     return totalPagesRead;
 }
-console.log(calculateTotalPagesRead(compitetors[2].pagesRead))
+for(let i = 0; i < compitetors.length; i++) {
+    console.log(`Total pages read by ${compitetors[i].name}: ${calculateTotalPagesRead(compitetors[i].pagesRead)}`)
+}
+
 
 //Returns average completion percentage across all books
 function calculateCompletionRate(pagesReadArray, totalPagesArray) {
@@ -64,15 +60,18 @@ function calculateCompletionRate(pagesReadArray, totalPagesArray) {
     }
     return Math.round(totalCompletion / pagesReadArray.length)
 }
-console.log(calculateCompletionRate(compitetors[2].pagesRead, compitetors[2].tolalPages))
+console.log(`Average completion rate: ${calculateCompletionRate(compitetors[2].pagesRead, compitetors[2].tolalPages)}%`)
+
+
 
 function awardPoints(totalPages, completionRate) {
     return totalPages + completionRate *2
 }
 
-console.log(awardPoints(calculateTotalPagesRead(compitetors[0].pagesRead), calculateCompletionRate(compitetors[0].pagesRead, compitetors[0].tolalPages)))
+console.log(`Award points for ${compitetors[0].name}: ${awardPoints(calculateTotalPagesRead(compitetors[0].pagesRead), calculateCompletionRate(compitetors[0].pagesRead, compitetors[0].tolalPages))}`)
 
-
+console.log("##########################################")
+console.log("Calculating scores and determining the winner...")
 //score
 
 let scores = []
@@ -114,6 +113,9 @@ for(let i = 1; i < scores.length; i++) {
         winnerIndex = i
     }
 }
+
+console.log("##########################################")
+console.log("And the winner is...")
 
 console.log(`The winner of the Reading Championship is ${compitetors[winnerIndex].name} with a score of ${highestScore}! Congratulations!`)
 
